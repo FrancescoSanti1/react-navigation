@@ -5,6 +5,7 @@ export default function Button({
     rounded,
     outline,
     variation,
+    ...rest
 }) {
 
     const classes = classNames("flex items-center px-3 py-1.5 border", {
@@ -23,7 +24,7 @@ export default function Button({
     })
 
     return (
-        <button className={classes}>
+        <button className={classes} {...rest}>
             {children}
         </button>
     );
