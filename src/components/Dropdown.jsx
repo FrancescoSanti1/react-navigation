@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-export default function Dropdown({ options }) {
+export default function Dropdown({ options, selected, onSelect }) {
 
     const [open, setOpen] = useState(false);
 
@@ -10,6 +10,7 @@ export default function Dropdown({ options }) {
 
     const handleSelected = (option) => {
         setOpen(false);
+        onSelect(option);
     }
 
     const renderList = options.map(option => {
@@ -17,7 +18,9 @@ export default function Dropdown({ options }) {
     })
 
     return <div>
-        <div onClick={handleClick} className="hover:cursor-pointer">Select...</div>
+        <div onClick={handleClick} className="hover:cursor-pointer">
+            {selected ? selected.label : "Select..."}
+        </div>
         {open && <div>{renderList}</div>}
     </div>
 }

@@ -1,17 +1,18 @@
-import Button from './components/Button'
+import { useState } from "react";
+import Dropdown from "./components/Dropdown";
 
 export default function App() {
-  const handleClick = () => {
-    console.log("ciao")
+
+  const [selected, setSelected] = useState(null);
+
+  const handleSelect = (option) => {
+    setSelected(option);
   }
-  return (
-    <>
-      <Button variation={"primary"}>Button text</Button>
-      <Button onClick={handleClick} variation={"secondary"}>Button text</Button>
-      <Button variation={"success"}>Button text</Button>
-      <Button variation={"warning"} outline>Button text</Button>
-      <Button variation={"danger"} rounded outline>Button text</Button>
-      <Button>Button text 2</Button>
-    </>
-  )
+
+  const options = [
+    { label: "Red", value: "red" },
+    { label: "Green", value: "green" },
+    { label: "Blue", value: "blue" },
+  ]
+  return <Dropdown selected={selected} onSelect={handleSelect} options={options} />
 }
