@@ -8,8 +8,12 @@ export default function Dropdown({ options }) {
         setOpen(!open);
     }
 
+    const handleSelected = (option) => {
+        setOpen(false);
+    }
+
     const renderList = options.map(option => {
-        return <div key={option.value} className="hover:cursor-pointer">{option.label}</div>
+        return <div onClick={() => handleSelected(option)} key={option.value} className="hover:cursor-pointer">{option.label}</div>
     })
 
     return <div>
