@@ -2,7 +2,15 @@ import classNames from "classnames";
 import { useState } from "react";
 
 export default function Accordion({ items }) {
-    const [expanded, setExpanded] = useState(0);
+    const [expanded, setExpanded] = useState(-1);
+
+    const handleClick = (index) => {
+        if (expanded === index) {
+            setExpanded(-1);
+        } else {
+            setExpanded(index);
+        }
+    }
 
     return <div className="border-x border-t rounded">
         {items.map((item, i) => {
@@ -18,7 +26,7 @@ export default function Accordion({ items }) {
             }</span>
 
             return <div key={item.id}>
-                <p onClick={() => setExpanded(i)} className="hover:cursor-pointer flex p-3 bg-gray-50 border-b justify-between items-center">{item.label} {icon}</p>
+                <p onClick={() => handleClick(i)} className="hover:cursor-pointer flex p-3 bg-gray-50 border-b justify-between items-center">{item.label} {icon}</p>
                 {isExpanded && <p className="border-b p-5">{item.content}</p>}
             </div >
         })}
