@@ -1,18 +1,21 @@
-import { useState } from "react";
-import Dropdown from "./components/Dropdown";
+import Link from "./components/Link";
+import Route from "./components/Route";
+import AccordionPage from "./pages/AccordionPage";
+import DropdownPage from "./pages/DropdownPage";
 
 export default function App() {
-
-  const [selected, setSelected] = useState(null);
-
-  const handleSelect = (option) => {
-    setSelected(option);
-  }
-
-  const options = [
-    { label: "Red", value: "red" },
-    { label: "Green", value: "green" },
-    { label: "Blue", value: "blue" },
-  ]
-  return <Dropdown value={selected} onChange={handleSelect} options={options} />
+  return <>
+    <div>
+      <Link to={"/accordion"}>Accordion</Link>
+      <Link to={"/dropdown"}>Dropdown</Link>
+    </div>
+    <div>
+      <Route path={"/accordion"}>
+        <AccordionPage />
+      </Route>
+      <Route path={"/dropdown"}>
+        <DropdownPage />
+      </Route>
+    </div>
+  </>
 }
