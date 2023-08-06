@@ -1,4 +1,4 @@
-export default function Table({ data, config }) {
+export default function Table({ data, config, keyFn }) {
     return <table className="table-auto border-spacing-2">
         <thead>
             <tr className="border-b-2">
@@ -8,10 +8,10 @@ export default function Table({ data, config }) {
             </tr>
         </thead>
         <tbody>
-            {data.map(fruit => {
-                return <tr key={fruit.name} className="border-b">
+            {data.map(row => {
+                return <tr key={keyFn(row)} className="border-b">
                     {config.map(col => {
-                        return <td key={col.label} className="p-3">{col.render(fruit)}</td>
+                        return <td key={col.label} className="p-3">{col.render(row)}</td>
                     })}
                 </tr>
             })}

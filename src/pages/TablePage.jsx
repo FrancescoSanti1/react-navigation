@@ -16,13 +16,15 @@ export default function TablePage() {
         },
         {
             label: "Color",
-            render: (fruit) => fruit.color
+            render: (fruit) => <div className={`p-3 m-2 ${fruit.color}`}></div>
         },
         {
             label: "Score",
             render: (fruit) => fruit.score
         }
-    ]
+    ];
 
-    return <Table data={data} config={config} />
+    const keyFn = (fruit) => fruit.name;
+
+    return <Table data={data} config={config} keyFn={keyFn} />
 }
