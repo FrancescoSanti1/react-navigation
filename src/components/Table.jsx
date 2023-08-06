@@ -1,10 +1,10 @@
-export default function Table({ data }) {
+export default function Table({ data, config }) {
     return <table className="table-auto border-spacing-2">
         <thead>
             <tr className="border-b-2">
-                <th>Fruit</th>
-                <th>Color</th>
-                <th>Score</th>
+                {config.map(th => {
+                    return <th key={th.label}>{th.label}</th>
+                })}
             </tr>
         </thead>
         <tbody>

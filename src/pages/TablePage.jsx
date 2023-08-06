@@ -9,5 +9,11 @@ export default function TablePage() {
         { name: "Lime", color: "bg-green-400", score: 4 },
     ];
 
-    return <Table data={data} />
+    const config = [
+        { label: "Fruit" },
+        { label: "Color" },
+        { label: "Score" }
+    ]
+
+    return <Table data={data} config={config} />
 }
