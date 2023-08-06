@@ -6,6 +6,7 @@ export default function Sidebar() {
         { label: "Accordion", path: "/accordion" },
         { label: "Button", path: "/button" },
         { label: "Modal", path: "/modal" },
+        { label: "Table", path: "/table" },
     ]
 
     return <div className="sticky top-0 overflow-y-scroll flex flex-col items-start">
