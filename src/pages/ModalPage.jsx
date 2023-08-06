@@ -9,8 +9,12 @@ export default function ModalPage() {
         setShowModal(true);
     }
 
+    const handleClose = () => {
+        setShowModal(false);
+    }
+
     return <div>
         <Button variation={"primary"} onClick={handleClick}>Open modal</Button>
-        {showModal && <Modal />}
+        {showModal && <Modal onClose={handleClose} />}
     </div>
 }
