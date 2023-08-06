@@ -10,9 +10,9 @@ export default function Table({ data, config }) {
         <tbody>
             {data.map(fruit => {
                 return <tr key={fruit.name} className="border-b">
-                    <td className="p-3">{config[0].render(fruit)}</td>
-                    <td className="p-3">{config[1].render(fruit)}</td>
-                    <td className="p-3">{config[2].render(fruit)}</td>
+                    {config.map(col => {
+                        return <td key={col.label} className="p-3">{col.render(fruit)}</td>
+                    })}
                 </tr>
             })}
         </tbody>
