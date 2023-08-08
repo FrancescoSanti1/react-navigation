@@ -8,7 +8,7 @@ export default function SortableTable(props) {
     const [sortBy, setsortBy] = useState(null);
 
     const handleClick = (label) => {
-        if (sortOrder === null) {
+        if ((sortBy && sortBy !== label) || sortOrder === null) {
             setSortOrder("asc");
             setsortBy(label);
         } else if (sortOrder === "asc") {
