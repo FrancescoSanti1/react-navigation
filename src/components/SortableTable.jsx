@@ -1,24 +1,9 @@
-import { useState } from "react";
+import useSort from "../hooks/useSort";
 import Table from "./Table";
 
 export default function SortableTable(props) {
     const { config, data } = props;
-
-    const [sortOrder, setSortOrder] = useState(null);
-    const [sortBy, setsortBy] = useState(null);
-
-    const handleClick = (label) => {
-        if ((sortBy && sortBy !== label) || sortOrder === null) {
-            setSortOrder("asc");
-            setsortBy(label);
-        } else if (sortOrder === "asc") {
-            setSortOrder("desc");
-            setsortBy(label);
-        } else if (sortOrder === "desc") {
-            setSortOrder(null);
-            setsortBy(null);
-        }
-    }
+    const { sortOrder, sortBy, sortedData, setSortColumn } = useSort(data, config);
 
     const icons = (label, sortBy, sortOrder) => {
         if (label !== sortBy) {
@@ -51,7 +36,7 @@ export default function SortableTable(props) {
         return {
             ...col,
             header: () => (
-                <th onClick={() => handleClick(col.label)}>
+                <th onClick={() => setSortColumn(col.label)}>
                     <div className="flex items-center cursor-pointer hover:bg-gray-100 p-1 rounded">
                         {col.label}
                         {icons(col.label, sortBy, sortOrder)}
@@ -60,22 +45,6 @@ export default function SortableTable(props) {
             )
         }
     });
-
-    let sortedData = data;
-
-    if (sortOrder && sortBy) {
-        const { sortValue } = config.find(col => col.label === sortBy);
-        sortedData = [...data].sort((a, b) => {
-            const valueA = sortValue(a);
-            const valueB = sortValue(b);
-            const reverse = sortOrder === "desc" ? -1 : 1;
-
-            if (typeof valueA === "string") {
-                return valueA.localeCompare(valueB) * reverse;
-            }
-            return (valueA - valueB) * reverse;
-        });
-    }
 
     return <Table {...props} config={updatedConfig} data={sortedData} />
 }
