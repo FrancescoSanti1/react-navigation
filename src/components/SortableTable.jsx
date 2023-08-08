@@ -51,8 +51,8 @@ export default function SortableTable(props) {
         return {
             ...col,
             header: () => (
-                <th onClick={() => handleClick(col.label)} className="cursor-pointer hover:bg-gray-100">
-                    <div className="flex items-center">
+                <th onClick={() => handleClick(col.label)}>
+                    <div className="flex items-center cursor-pointer hover:bg-gray-100 p-1 rounded">
                         {col.label}
                         {icons(col.label, sortBy, sortOrder)}
                     </div>
