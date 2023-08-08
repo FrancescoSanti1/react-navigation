@@ -77,8 +77,5 @@ export default function SortableTable(props) {
         });
     }
 
-    return <div>
-        {sortOrder} - {sortBy}
-        <Table {...props} config={updatedConfig} data={sortedData} />
-    </div>
+    return <Table {...props} config={updatedConfig} data={sortedData} />
 }
